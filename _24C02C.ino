@@ -63,10 +63,10 @@ void print_addr(unsigned int a) {
   if ( a < 0x10) {
     b = "000";
   }
-  Serial.print("|");
+  Serial.print("|$\\color{green}{");
   Serial.print(b);
   Serial.print(a, HEX);
-  Serial.print("|");
+  Serial.print("}$|");
 }
 
 void print_data(unsigned int a) {
@@ -80,8 +80,9 @@ void print_low_addr() {
     Serial.println();
   Serial.print("|    |");
   for (int i = 0; i < 0x10; i++){
+    Serial.print("$\\color{blue}{");
     print_data(i);
-    Serial.print("|");
+    Serial.print("}$|");
   }
   Serial.println();
 
@@ -123,7 +124,9 @@ void setup() {
       if ((addr % 0x10) == 0) {
         print_addr(addr);
       }
+      Serial.print("$");
       print_data(val);
+      Serial.print("$");
       Serial.print("|");
       if ((addr % 0x10) == 0x0F) {
         Serial.println();
